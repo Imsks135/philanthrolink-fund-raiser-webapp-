@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation-page</title>
+</head>
+
+<body>
+    <div class="nav" style="position: sticky; top: 0; z-index: 2;">
+        <mat-toolbar style=" background-color: #3F403F; width: 100%;">
+            <mat-toolbar-row class="row1" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);">
+                <img src="../../assets/GOOD_CAUSE-removebg-preview.png" alt="" style="width: 60px; height: 60px;">
+                <h1 style="padding-top: 15px;" class="title">Philanthrolink</h1>
+                <form action="" class="search-bar" [formGroup]="searchcampaign">
+                    <button mat-icon-button (click)="searchCampaigns()"><mat-icon>search</mat-icon></button>
+                    <input type="text" placeholder="Search" formControlName="name">
+                </form>
+                <span class="example-spacer"></span>
+                <button mat-raised-button (click)="openDialog()" id="navv-btn" *ngIf="shouldShowButton">Start Fundraiser</button>
+                <button mat-raised-button style="margin-left: 10px;" [routerLink]="'/feedback'" id="navv-btn">Testimonials</button>
+                <button mat-icon-button style="margin-left: 10px;" [matMenuTriggerFor]="menu"><mat-icon
+                        class="icon1" style="color: #E6E8E6;">account_circle</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="logoutOrRedirect()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button>
+                    <button mat-menu-item *ngIf="shouldShowButton" [routerLink]="'/myCampiagn'">My Campaign</button>
+                    <button mat-menu-item *ngIf="isLoggedIn && showEditProfile" [routerLink]="'/EditP'" >My Profile</button>
+                </mat-menu>
+
+
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+    </div>
+
+    <div class="lowerPart">
+        <div class="statcrd" style="width: 100%; padding: 30px;" fxLayout="row" fxLayoutGap="16px">
+            <mat-card fxFlex="25%" class="carditro">
+                <mat-card-header>
+                    <mat-card-title>Total Donation</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-icon style="float: right;">volunteer_activism</mat-icon>
+                    <h1>$ 18090786</h1>
+                    <p>We have collected a total amount of $18090786 for helping out people in different sectors.</p>
+                </mat-card-content>
+            </mat-card>
+            <mat-card fxFlex="25%" class="carditro">
+                <mat-card-header>
+                    <mat-card-title>Projects Funded</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-icon style="float: right;">campaign</mat-icon>
+                    <h1>2000</h1>
+                    <p>With the help of our organization as much as 2000 campaigns have been funded in different
+                        sectors.</p>
+                </mat-card-content>
+            </mat-card>
+            <mat-card fxFlex="25%" class="carditro">
+                <mat-card-header>
+                    <mat-card-title>Global Reach</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-icon style="float: right;">public</mat-icon>
+                    <h1>28+</h1>
+                    <p>We are present in accross 28+ countries helping people in different sectors.</p>
+                </mat-card-content>
+            </mat-card>
+            <mat-card fxFlex="25%" class="carditro">
+                <mat-card-header>
+                    <mat-card-title>Monthly Donors</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-icon style="float: right;">diversity_3</mat-icon>
+                    <h1>600</h1>
+                    <p>More than 600 people joined us to move forward with our Journey for the betterment of our society
+                    </p>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+        <div class="donCrds" style="width: 100%; padding: 30px;">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <h1>Recent Campaigns</h1>
+                <form [formGroup]="searchcampaign">
+                    <mat-form-field style="padding: 20px;" appearance="outline">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="name" (selectionChange)="searchCampaignbycat()">
+                            <mat-option value="Healthcare">Healthcare</mat-option>
+                            <mat-option value="NonProfit">NonProfit</mat-option>
+                            <mat-option value="Education">Education</mat-option>
+                            <mat-option value="PovertyAlleviation">PovertyAlleviation</mat-option>
+                            <mat-option value="AnimalWelfare">AnimalWelfare</mat-option>
+                            <mat-option value="DisasterRelief">DisasterRelief</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+
+            </div>
+            <div fxLayout="row wrap" fxLayoutGap="20px grid" class="card-container">
+                <div fxFlex="calc(25% - 20px)" *ngFor="let num of campaignDta" class="card-wrapper">
+                    <mat-card class="card" #card>
+                        <mat-card-header>
+                            <div class="header-content">
+                                <mat-card-title #cardTitle>{{num.nameOfTheProject}}</mat-card-title>
+                                <mat-card-subtitle>{{num.category}}</mat-card-subtitle>
+                            </div>
+                        </mat-card-header>
+                        <img mat-card-image src={{num.imageUrl}} alt="Photo of a campaign" class="card-image">
+                        <br>
+                        <mat-card-content>
+                            <p class="desp">{{num.projectDescription}}</p>
+                            <br>
+                            <P class="phone">Phone: {{num.contactNumber}}</P>
+                            <P class="Projectstatus">Projectstatus: {{num.projectStatus}}</P>
+                            <P class="amount">Tageted Amount: {{num.targetedAmount}}</P>
+                        </mat-card-content>
+                        <br>
+                        <mat-card-actions>
+                            <button mat-button mat-flat-button style="    background-color:  #3F403F; color: #E6E8E6;"
+                                class="card-button" (click)="donateNow(num)">Donate Now</button>
+                        </mat-card-actions>
+                    </mat-card>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="fupper" style="width: 100%; padding: 10px;">
+            <img src="../../assets/GOOD_CAUSE-removebg-preview.png" alt="" style="width: 60px; height: 60px;">
+            <div class="About" style="display: flex; max-width: 100%; margin-top: 10px;justify-content: space-around;">
+                <div class="description" style="max-width: 25%;">
+                    <h2 class="title" style="color: #E6E8E6;">Philanthrolink</h2>
+                    <p style="color: #E6E8E6; text-align: justify;">
+                        Philanthrolink: Bridging Hearts, Changing lives. Our Mission is to connect compassionate
+                        indivisuals
+                        with causes that
+                        matter. Join us in making a difference, with one donation at a time.
+
+                    </p>
+                </div>
+                <div class="newsletter" style="max-width: 25%;">
+                    <h2 class="title" style="color: #E6E8E6;">Get Update from us. Join our news Letter</h2>
+                    <div class="div" style="display: flex;">
+                        <input type="text" placeholder="Enter Your email" style="padding: 10px; border-radius: 5px;">
+                        <button style="margin-left: 5px; padding: 10px; border-radius: 5px; color: gr">Submit</button>
+                    </div>
+
+                </div>
+                <div class="contact" style="max-width: 25%; text-align: center;">
+                    <h2 class="title" style="color: #E6E8E6;">Follow us on</h2>
+                    <div style="display: flex;">
+                        <button mat-icon-button><i id="iconbtn" class="fa fa-facebook-official"></i>
+                        </button>
+                        <button mat-icon-button><i id="iconbtn"
+                                class="fa fa-envelope"></i></button>
+                        <button mat-icon-button><i id="iconbtn"
+                                class="fa fa-instagram"></i></button>
+                        <button mat-icon-button><i id="iconbtn"
+                                class="fa fa-linkedin"></i></button>
+                    </div>
+                </div>
+                <div class="contactUS" style="max-width: 25%;">
+                    <h2 class="title" style="color: #E6E8E6;">Contact Us On</h2>
+                    <h3 style="color: #E6E8E6; font-weight: bold;">Phone Number: 000000000</h3>
+                    <p style="text-align: justify; color: #E6E8E6;">
+                        <mat-icon style="color: #E6E8E6;">location_on</mat-icon>
+                        5th cross road, 4th Main Road, Bandra East, Mumbai, Pin Code: 564000
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <hr style="border: 2px solid white;">
+        <div style="display: flex; justify-content: center; bottom: 0;">
+            <mat-icon style="color: #ffff;">copyright</mat-icon>
+            <h3 style="color: #ffff; margin-left: 3px;">2023 All rights reserved. Terms and conditions applied </h3>
+        </div>
+    </div>
+</body>
+
+</html>

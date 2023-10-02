@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philanthrolink</title>    
+</head>
+<body>
+    <div class="card" id="card-1" *ngIf="donationData">        
+        <div class="Philanthrolink" class="card-1-elements">
+            <div class="Philanthrolink-logo">
+                <img src="assets/GOOD_CAUSE-removebg-preview.png" alt="Logo" width="100" height="100">
+            </div>
+            <b><h2 class="Philanthrolink-title">Philanthrolink</h2></b>
+        </div>       
+           
+        <h2 class="card-1-elements">{{ donationData.name }}</h2>
+        <p class="card-1-elements">{{ donationData.description }}</p>
+        <p class="card-1-elements"><span class="detail-label">Amount Raised (in Rupees) :</span> {{donatedAmount}} / {{ donationData.Amount }}</p>
+        <p class="card-1-elements"><span class="detail-label">Amount Already Donated by You (in Rupees) :</span> {{userDonatedAmount}}</p>
+    </div>
+
+    <div class="card" id="card-2">
+        <h2>Payment Details</h2> <br>
+            <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                
+                <div class="form-group">                    
+                    <input type="text" id="name" name="name" [(ngModel)]="form.name" required minlength="3" maxlength="20" #name="ngModel" placeholder="Name" />
+                    <div class="error-message" *ngIf="f.submitted && name.errors?.['required']">Name is required</div>
+                    <div class="error-message" *ngIf="f.submitted && name.errors?.['minlength']">Name must be at least 3 characters</div>
+                    <div class="error-message" *ngIf="f.submitted && name.errors?.['maxlength']">Name must be at most 20 characters</div>
+                </div>
+                <div class="form-group">                    
+                    <input type="email" id="email" name="email" [(ngModel)]="form.email" required #email="ngModel" placeholder="Email" />
+                    <div class="error-message" *ngIf="f.submitted && email.errors?.['required']">Email is required!</div>
+                </div>
+                <div class="form-group">                    
+                    <input type="tel" id="phone" name="phone" [(ngModel)]="form.phone" required minlength="10" maxlength="10" #phone="ngModel"placeholder="Phone"  />
+                    <div class="error-message" *ngIf="f.submitted && phone.errors?.['required']">Phone is required</div>
+                    <div class="error-message" *ngIf="f.submitted && (phone.errors?.['minlength'] || phone.errors?.['maxlength'])">Phone must be 10 digits</div>
+                </div>
+                <div class="form-group">                    
+                    <input type="number" id="amount" name="amount" [(ngModel)]="form.amount" required #amount="ngModel" placeholder="Amount"  />
+                    <div class="error-message" *ngIf="f.submitted && amount.errors?.['required']">Amount is required</div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-primary">Pay</button>
+                </div>
+            </form>
+    </div>    
+</body>
+</html>

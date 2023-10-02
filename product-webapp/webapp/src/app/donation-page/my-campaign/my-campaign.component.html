@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCampaign</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="nav" style="position: sticky; top: 0; z-index: 2;">
+        <mat-toolbar style="background-color:#3F403F; width: 100%;">
+            <mat-toolbar-row class="row1" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);">
+                <img src="../../assets/GOOD_CAUSE-removebg-preview.png" alt="" style="width: 60px; height: 60px;">
+                <h1 style="padding-top: 15px;" class="title">Philanthrolink</h1>
+                <span class="example-spacer"></span>
+                <button mat-raised-button (click)="openDialog()" id="navv-btn">Start Fundraiser</button>
+                <button mat-icon-button style="margin-left: 10px;" [matMenuTriggerFor]="menu"><mat-icon class="icon1"
+                        style="color: #E6E8E6;">account_circle</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="logoutOrRedirect()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button>
+                    <button mat-menu-item routerLink="/dashboard">Home</button>
+                </mat-menu>
+
+
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="20px grid" class="card-container">
+        <div fxFlex="calc(25% - 20px)" *ngFor="let num of campaignDta" class="card-wrapper">
+            <mat-card class="card" #card>
+                <mat-card-header>
+                    <div class="header-content">
+                        <mat-card-title #cardTitle>{{num.nameOfTheProject}}</mat-card-title>
+                        <mat-card-subtitle>{{num.category}}</mat-card-subtitle>
+                    </div>
+                </mat-card-header>
+                <div class="menu-button">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            (click)=" onEdit(num)">Edit</button>
+                    </mat-menu>
+                </div>
+                <img mat-card-image src={{num.imageUrl}} alt="Photo of a campaign" class="card-image">
+                <br>
+                <mat-card-content>
+                    <p class="desp">{{num.projectDescription}}</p>
+                    <br>
+                    <P class="phone">Phone: {{num.contactNumber}}</P>
+                    <P class="Projectstatus">Projectstatus: {{num.projectStatus}}</P>
+                    <P class="amount">Tageted Amount: {{num.targetedAmount}}</P>
+                </mat-card-content>
+                <br>
+                <mat-card-actions>
+                    <button mat-button mat-flat-button style="color: #ffff; background-color: black;"
+                        class="card-button" (click)="deleteYourCampaign(num)">Delete</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="fupper" style="width: 100%; padding: 10px;">
+            <img src="../../assets/GOOD_CAUSE-removebg-preview.png" alt="" style="width: 60px; height: 60px;">
+            <div class="About" style="display: flex; max-width: 100%; margin-top: 10px;justify-content: space-around;">
+                <div class="description" style="max-width: 25%;">
+                    <h2 class="title" style="color: #ffff;">Philanthrolink</h2>
+                    <p style="color: #ffff; text-align: justify;">
+                        Philanthrolink: Bridging Hearts, Changing lives. Our Mission is to connect compassionate
+                        indivisuals
+                        with causes that
+                        matter. Join us in making a difference, with one donation at a time.
+
+                    </p>
+                </div>
+                <div class="newsletter" style="max-width: 25%;">
+                    <h2 class="title" style="color: #ffff;">Get Update from us. Join our news Letter</h2>
+                    <div class="div" style="display: flex;">
+                        <input type="text" placeholder="Enter Your email" style="padding: 10px; border-radius: 5px;">
+                        <button style="margin-left: 5px; padding: 10px; border-radius: 5px; color: gr">Submit</button>
+                    </div>
+
+                </div>
+                <div class="contact" style="max-width: 25%; text-align: center;">
+                    <h2 class="title" style="color: #ffff;">Follow us on</h2>
+                    <div style="display: flex;">
+                        <button mat-icon-button><i id="iconbtn" class="fa fa-facebook-official"></i>
+                        </button>
+                        <button mat-icon-button><i id="iconbtn" class="fa fa-envelope"></i></button>
+                        <button mat-icon-button><i id="iconbtn" class="fa fa-instagram"></i></button>
+                        <button mat-icon-button><i id="iconbtn" class="fa fa-linkedin"></i></button>
+                    </div>
+                </div>
+                <div class="contactUS" style="max-width: 25%;">
+                    <h2 class="title" style="color: #ffff;">Contact Us On</h2>
+                    <h3 style="color: #ffff; font-weight: bold;">Phone Number: 000000000</h3>
+                    <p style="text-align: justify; color: #ffff;">
+                        <mat-icon style="color: #ffff; z-index: 1;">location_on</mat-icon>
+                        5th cross road, 4th Main Road, Bandra East, Mumbai, Pin Code: 564000
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <hr style="border: 2px solid white;">
+        <div style="display: flex; justify-content: center; bottom: 0;">
+            <mat-icon style="color: #ffff;">copyright</mat-icon>
+            <h3 style="color: #ffff; margin-left: 3px;">2023 All rights reserved. Terms and conditions applied </h3>
+        </div>
+    </div>
+</body>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h1 class="modal-title fs-5">Edit Campaign</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue" style="height: 100%;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                            <label for="inputEmail4" class="form-label">Name</label>
+                            <input type="text" class="form-control" placeholder="name" aria-label="name" formControlName="name">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                            <label for="inputEmail4" class="form-label">UUID</label>
+                            <input type="text" class="form-control" placeholder="UUID" aria-label="UUID" formControlName="projectId">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                            <label for="inputEmail4" class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="Email" aria-label="Email"  formControlName="email">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                            <label for="inputEmail4" class="form-label">Phone</label>
+                            <input type="number" class="form-control" placeholder="Phone" aria-label="Phone" formControlName="contactNumber">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                            <label for="inputEmail4" class="form-label">Project Name</label>
+                            <input type="text" class="form-control" placeholder="Project Name" aria-label="Email" formControlName="nameOfTheProject">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                            <label for="inputEmail4" class="form-label">Image Url</label>
+                            <input type="text" class="form-control" placeholder="Image Url" aria-label="Phone" formControlName="imageUrl">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                            <label for="inputEmail4" class="form-label">Target Amount</label>
+                            <input type="number" class="form-control" placeholder="Target Amount" aria-label="Email" formControlName="targetedAmount">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="inputEmail4" class="form-label">Project Status</label>
+                                <select id="inputState" class="form-select" formControlName="projectStatus">
+                                    <option selected>Choose...</option>
+                                    <option value="0">0</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="75">75</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="inputEmail4" class="form-label">Category</label>
+                                <select id="inputState" class="form-select" formControlName="category">
+                                    <option selected>Choose...</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="NonProfit">NonProfit</option>
+                                    <option value="Education">Education</option>
+                                    <option value="PovertyAlleviation">PovertyAlleviation</option>
+                                    <option value="AnimalWelfare">AnimalWelfare</option>
+                                    <option value="DisasterRelief">DisasterRelief</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="floatingTextarea2">Project description</label>
+                            <textarea class="form-control" placeholder="Project description" id="floatingTextarea2"
+                                style="height: 100px" formControlName="projectDescription"></textarea>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">Close</button>
+                <button type="button" class="btn btn-primary" (click)="updatedEmployee()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</html>

@@ -1,0 +1,175 @@
+version: "3"
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+        RABBITMQ_DEFAULT_USER: guest
+        RABBITMQ_DEFAULT_PASS: guest
+
+  eureka-server:
+    build: eureka-server/
+    container_name: eureka-server
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8076:8076
+
+  api-gateway:
+    build: api-gateway/
+    container_name: api-gateway
+    depends_on:
+      - eureka-server
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 7003:7003
+
+  product-webapp:
+    build: product-webapp/
+    image: product-webapp
+    depends_on:
+      - eureka-server
+      - api-gateway
+    restart: always
+    container_name: product-webapp
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 4200:4200
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 27017:27017
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    container_name: mysql
+    network_mode: "host"
+    hostname: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USERNAME: root
+      #MYSQL_DATABASE: root
+      MYSQL_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+    container_name: elasticsearch
+    network_mode: "host"
+    hostname: localhost
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=elasticsearch
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  authentication-service:
+    image: authentication-service
+    build: authentication-service/
+    container_name: authentication-service
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - mysql
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 5555:5555
+
+  user-profile-service:
+    image: user-profile-service
+    build: User-Profile-Service/
+    container_name: user-profile-service
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - mongodb
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 1122:1122
+
+  donation-service:
+    image: donation-service
+    build: donation-service/
+    container_name: donation-service
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - elasticsearch
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8085:8085
+
+  payment-service:
+    image: payment-service
+    build: payment-service/
+    container_name: payment-service
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - mongodb
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 5566:5566
+
+  support-service:
+    image: support-service
+    build: support-service/
+    container_name: support-service
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - mongodb
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8999:8999
+
+  email-service:
+    image: email-service
+    build: email-service/
+    container_name: email-service
+    depends_on:
+      - api-gateway
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8888:8888
+
+  feedback-service:
+    image: feedback-service
+    build: feedback-service/
+    container_name: feedback-service
+    depends_on:
+      - api-gateway
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8089:8089
+

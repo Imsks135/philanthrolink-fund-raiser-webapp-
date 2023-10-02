@@ -1,0 +1,46 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8076/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+server:
+  port: 7003
+ribbon:
+  ReadTimeout: 60000
+
+spring:
+  application:
+    name: "api-gateway"
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            exposedHeaders: "*"
+
+#      routes:
+#        - id: product-webapp
+#          uri: lb://product-webapp
+#          predicates:
+#            - Path=/**
+#          filters:
+#            - RewritePath=/product-webapp(?<segment>/?.*), $\{segment}
+#        - id: User-Profile-Service
+#          uri: lb://User-Profile-Service
+#          predicates:
+#            - Path=/user/**
+#          filters:
+#            - RewritePath=/User-Profile-Service(?<segment>/?.*), $\{segment}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

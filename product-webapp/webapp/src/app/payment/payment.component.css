@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: small;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+  }
+   
+  .card-container.card {
+    max-width: 400px !important;
+    padding: 40px 40px;
+  }
+   
+  .card {
+    background-color: #f7f7f7;
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .Philanthrolink {
+    display: flex;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 0px;
+    padding-bottom: 30px;
+   }
+   
+   img {
+     max-width: 100%;
+     max-height:100%;
+     float: left;
+   }
+   
+   .Philanthrolink-title {
+        padding-top: 30px;
+        padding-left: 5px;                
+        float: left;
+        font-weight: 600;
+   }
+
+/* Reset some default styles */
+
+.card-1-elements {
+    margin-bottom: 25px;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#card-1 {
+    background-color: #f5f5f5;  
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    margin: 0 10px;
+    width: 50%;
+    min-height: 75%;
+    border-width: 0;
+    padding-left: 0;
+    padding-right: 100px;  
+}
+#card-2 {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    margin: 0 10px;
+    width: 30%;
+    min-height: 75%;    
+}
+
+.detail-label {
+    font-weight: bold;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+.error-message {
+    color: #ff0000;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 40px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;    
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Alert styles */
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.alert.error {
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+}
+
+.alert.success {
+    background-color: #ccffcc;
+    border: 1px solid #00cc00;
+    color: #00cc00;
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+      display: inline;      
+    }
+    #card-1 {
+        width: calc(100% - 20px);
+    }
+    #card-2 {
+        margin-top: 10px;
+        width: calc(100% - 20px);
+    }
+  }

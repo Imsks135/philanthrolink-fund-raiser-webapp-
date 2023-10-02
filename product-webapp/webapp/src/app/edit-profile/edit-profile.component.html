@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User-edit-Details-Page</title>
+</head>
+<div class="nav" style="position: sticky; top: 0; z-index: 2;">
+  <mat-toolbar style="background-color:#3F403F; width: 100%;">
+    <mat-toolbar-row class="row1" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);">
+      <img src="../../assets/GOOD_CAUSE-removebg-preview.png" alt="" style="width: 60px; height: 60px;">
+      <h1 style="padding-top: 15px;" class="title">Philanthrolink</h1>
+      <span class="example-spacer"></span>
+      <button mat-raised-button id="navv-btn" *ngIf="shouldShowButton" (click)="openDialog()">Start Fundraiser</button>
+      <button mat-icon-button style="margin-left: 10px;" [matMenuTriggerFor]="menu"><mat-icon class="icon1"
+          style="color: #E6E8E6;">account_circle</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logoutOrRedirect()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button>
+        <button mat-menu-item *ngIf="shouldShowButton" [routerLink]="'/myCampiagn'">My Campaign</button>
+        <button mat-menu-item routerLink="/dashboard">Home</button>
+      </mat-menu>
+
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+</div>
+<body>
+  <div class="card-1">
+    <div class="profile-title-container"><h2>Profile</h2></div>  
+    <div class="card-1-container">
+      <div class="card-1-container-left">        
+        <img class="profile-picture" src="../assets/profileavatar.png" alt="" />
+      </div>  
+      <div class="card-1-container-right">        
+            <form name="form" (ngSubmit)="f.form.valid && saveProfile()" #f="ngForm" novalidate> 
+              
+              <div class="emailAndPhone">
+                <div class="form-group" class="email">      
+                  <label for="email">Email :</label> <br>                            
+                  <input type="email" id="email" name="email" [(ngModel)]="userProfile.email" required minlength="2" #email="ngModel" />
+                  <div class="error-message" *ngIf="f.submitted && email.errors?.['required']">Email is required!</div>
+                  <div class="error-message" *ngIf="f.submitted && phone.errors?.['minlength']">Valid Email is required!</div>
+                </div>
+                <div class="form-group" class="phone">
+                  <label for="phone">Phone number :</label> <br>                  
+                  <input type="tel" id="phone" name="phone" [(ngModel)]="userProfile.phoneNumber" required minlength="10" maxlength="10" #phone="ngModel" />
+                  <div class="error-message" *ngIf="f.submitted && phone.errors?.['required']">Phone is required</div>
+                  <div class="error-message" *ngIf="f.submitted && (phone.errors?.['minlength'] || phone.errors?.['maxlength'])">Phone must be 10 digits</div>
+                </div>
+              </div>
+                               
+                <div class="form-group">
+                  <label for="address">Address :</label> <br> 
+                  <textarea id="address" [(ngModel)]="userProfile.address" name="address"></textarea>                  
+                </div> 
+                <div class="form-group">
+                    <label for="Pincode">Pincode :</label> <br>             
+                    <input type="text" id="pincode" name="pincode" [(ngModel)]="userProfile.pincode" #amount="ngModel"/>                    
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-primary">Save</button>
+                </div>
+            </form>
+      </div>
+    </div>      
+  </div>
+
+  <div class="card-2">
+    <h2 class="donations-title">Your Donations</h2>
+
+    <div class="donations-total-container-outer">
+      <div class="donations-total-container-inner">
+        <div class="donations-total-text">Your Total Donation : </div> 
+        <div class="donations-total-amount">₹ {{totalDonation}} </div>
+      </div>      
+    </div>   
+
+    <div class="main-container">
+      <div class="container">
+        <br>
+        <div *ngFor="let element of data; let i = index">
+          <hr> <br> <br>
+          <b><div class="donation-name">{{ element.donationData?.name }}</div></b>
+          <div class="donation-description">{{ element.donationData?.description }}</div>
+          <b><div class="donation-amount">₹ {{element.amount}}</div></b>
+          <div>{{timeStampToDate(element.timeStamp)}}, {{timeStampToTime(element.timeStamp)}}</div>
+          <br> <br>      
+        </div>       
+      </div>
+    </div>     
+  </div>
+  
+  
+</body>
+</html>

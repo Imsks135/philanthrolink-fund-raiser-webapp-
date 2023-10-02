@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+</head>
+<div class="nav" style="position: sticky; top: 0; z-index: 2;">
+    <mat-toolbar style="background-color:#3F403F; width: 100%;">
+      <mat-toolbar-row class="row1" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);">
+        <img src="../../assets/GOOD_CAUSE-removebg-preview.png" alt="" style="width: 60px; height: 60px;">
+        <h1 style="padding-top: 15px;" class="title">Philanthrolink</h1>
+        <span class="example-spacer"></span>
+        <button mat-raised-button id="navv-btn" *ngIf="shouldShowButton" (click)="openDialog()">Start Fundraiser</button>
+        <button mat-icon-button style="margin-left: 10px;" [matMenuTriggerFor]="menu"><mat-icon class="icon1"
+            style="color: #E6E8E6;">account_circle</mat-icon></button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logoutOrRedirect()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button>
+            <button mat-menu-item *ngIf="shouldShowButton" [routerLink]="'/myCampiagn'">My Campaign</button>
+            <button mat-menu-item *ngIf="isLoggedIn && showEditProfile" [routerLink]="'/EditP'" >My Profile</button>
+          <button mat-menu-item routerLink="/dashboard">Home</button>
+        </mat-menu>
+  
+  
+      </mat-toolbar-row>
+    </mat-toolbar>
+  
+  </div>
+<body class="p-5">
+    <div class="container feedback-container">
+        <h1>Feedback</h1>
+        <p class="pera">Let us know what you think!</p>
+        <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <select class="form-control" id="rating" formControlName="rating">
+                  <option value="1">1 - Very Poor</option>
+                  <option value="2">2 - Poor</option>
+                  <option value="3">3 - Average</option>
+                  <option value="4">4 - Good</option>
+                  <option value="5">5 - Excellent</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="feedback">Feedback</label>
+                <textarea class="form-control" id="feedback" rows="3" placeholder="Share your thoughts..."
+                    formControlName="feedback"></textarea>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-submit" [disabled]>Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="text-center mt-4">
+        <button type="button" class="btn btn-link" routerLink="/reviews">See all Reviews</button>
+    </div>
+</body>
+</html>

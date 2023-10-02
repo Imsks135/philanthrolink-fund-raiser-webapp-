@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+@import "~font-awesome/css/font-awesome.css";
+*{
+    border: 0;
+    padding: 0;
+}
+
+body{
+  background-color: #CED0CE;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+  display: flex; 
+  flex-direction: column;
+}
+
+.title{
+  font-family:'Mooli', sans-serif;
+  font-weight: bold;
+  color: #E6E8E6;
+}
+.search-bar{
+    width: 100%;
+    max-width: 700px;
+    background-color: #CED0CE;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin-left: 70px;
+}
+
+.search-bar:focus-within{
+    background-color: #ffff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5); 
+}
+
+.search-bar input{
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-card {
+    max-width: 400px;
+  }
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+.card-wrapper {
+    flex: 1;
+    min-width: calc(25% - 20px);
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+  
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #E6E8E6;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5); 
+  }
+.card-button {
+    background-color:  #E6E8E6;
+    color: #3F403F;
+    position: absolute;
+    bottom: 10px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    padding: 10px;
+    width: 80%; 
+    text-align: center;
+  }
+
+.desp{
+    text-align: justify;
+}
+
+.card-image {
+  height: 200px; 
+  object-fit: cover; 
+  width: 100%;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Increase size on hover */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  cursor: pointer; /* Change cursor to indicate interactivity */
+}
+
+.header-content {
+  flex-grow: 1; /* Header content takes all available space */
+}
+
+.menu-button {
+  position: absolute;
+  top: 5px; /* Adjust the top position as needed */
+  right: 5px; /* Adjust the right position as needed */
+}
+
+#iconbtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  background-color: #3F403F;
+  color: #E6E8E6;
+  /* text-align: center;
+  align-items: center; */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  /* min-height: 100vh;  */
+}
+
+#navv-btn{
+  background-color: #9FB8AD;
+  color: #3F403F;
+}
+
+.carditro{
+  background-color: #475841;
+  color: #E6E8E6;
+}
+
+.icon1{
+  font-size: 26px;
+}
+
+.fupper{
+  display: flex;
+}
+
+#iconbtn{
+  color: #fff;
+}
+
+

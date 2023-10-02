@@ -1,0 +1,80 @@
+<button mat-icon-button style="float: right; margin: 5px;" matDialogClose>
+    <mat-icon>close</mat-icon>
+  </button>
+  <header style="padding: 10px; box-shadow: 0 2px 4px 0 rgba(0,0,0,.2); margin-top: 8px;">
+    <h1 style="color: grey;">Enter your details</h1>
+  </header>
+  <mat-dialog-content style="top: 0; height: 400px;">
+    <form [formGroup]="formValue" style="height: 100%;">
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="form-row">
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Full Name" type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>UUID</mat-label>
+          <input matInput placeholder="Enter your Business or Aadhaar number" type="text" formControlName="projectId">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="form-row">
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>Phone</mat-label>
+          <input matInput placeholder="Phone Number" type="number" formControlName="contactNumber">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email Id" type="email" formControlName="email">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="form-row">
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>Project Name</mat-label>
+          <input matInput placeholder="Name of the project" type="text" formControlName="nameOfTheProject">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>Image Url</mat-label>
+          <input matInput placeholder="Enter the Url" type="text" formControlName="imageUrl">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="form-row">
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>Target Amount</mat-label>
+          <input matInput placeholder="Enter the Amount" type="number" formControlName="targetedAmount">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>Project Status</mat-label>
+          <mat-select formControlName="projectStatus">
+            <mat-option value="25">25</mat-option>
+            <mat-option value="50">50</mat-option>
+            <mat-option value="75">75</mat-option>
+            <mat-option value="100">100</mat-option>
+            <mat-option value="0">0</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="form-row">
+        <mat-form-field appearance="outline" fxFlex="50%">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option value="Healthcare">Healthcare</mat-option>
+            <mat-option value="NonProfit">NonProfit</mat-option>
+            <mat-option value="Education">Education</mat-option>
+            <mat-option value="PovertyAlleviation">PovertyAlleviation</mat-option>
+            <mat-option value="AnimalWelfare">AnimalWelfare</mat-option>
+            <mat-option value="DisasterRelief">DisasterRelief</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="form-row">
+        <mat-form-field appearance="outline" fxFlex="100%">
+          <mat-label>Project Description</mat-label>
+          <textarea matInput formControlName="projectDescription"></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" style="margin: 10px;">
+    <button mat-raised-button (click)="postCampaigndetails()" color="primary">Submit</button>
+    <button mat-raised-button id="cancel" color="warn" matDialogClose>Cancel</button>
+  </mat-dialog-actions>
+  

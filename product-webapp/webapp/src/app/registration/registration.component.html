@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="nav" style="position: sticky; top: 0; z-index: 2;">
+    <mat-toolbar style="background-color:#3F403F; width: 100%;">
+      <mat-toolbar-row class="row1" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);">
+        <img src="../../assets/GOOD_CAUSE-removebg-preview.png" alt="" style="width: 60px; height: 60px;">
+        <h1 style="padding-top: 15px;" class="title">Philanthrolink</h1>
+        <span class="example-spacer"></span>
+        <button mat-raised-button id="navv-btn" routerLink="/login">Login</button>
+        <button mat-icon-button style="margin-left: 10px;" [matMenuTriggerFor]="menu"><mat-icon class="icon1"
+            style="color: #E6E8E6;">account_circle</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="">Home</button>
+        </mat-menu>
+
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+  </div>
+  <img src="../assets/Philanthrolink 1.png ">
+  <div class="container">
+    <h3>Registration</h3>
+    <form [formGroup]="registerForm">
+      <div class="form-floating">
+        <input type="text" class="form-control" formControlName="userName" id="userName" placeholder="Enter your name">
+        
+        <label for="floatingInput">UserName</label>
+
+      </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" formControlName="email" id="email" placeholder="name@example.com">
+        
+        <label for="floatingPassword">Email ID</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password">
+        
+        <label for="Password">Password</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword" placeholder="Password">
+        
+        <label for="ConfirmPassword">Confirm Password</label>
+      </div>
+      <div class="form-floating">
+        <input type="number" class="form-control" formControlName="phoneNumber" id="phonenumber" placeholder="Password">
+       
+        <label for="Phonenumber">Phone Number</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" formControlName="address" id="address" placeholder="Password">
+        
+
+        <label for="address">Address</label>
+      </div>
+      <div class="form-floating">
+        <input type="number" class="form-control" formControlName="pincode" id="pincode" placeholder="Password">
+
+        <label for="pincode">PinCode</label>
+      </div>
+      <div class="form-floating">
+        <input type="number" class="form-control" formControlName="age" id="Age" placeholder="Password">
+
+        <label for="floatingPassword">Age</label>
+      </div>
+      <div class="form-floating">
+        <select class="form-select" formControlName="role" id="floatingSelect"
+          aria-label="Floating label select example">
+          <!-- <option selected>Role</option> -->
+          <option value="Donor">Donor</option>
+          <option value="FundRaiser">Fund Raiser</option>
+        </select>
+        
+        <label for="floatingSelect">Select your role</label>
+      </div>
+      <button (click)="registerCheck()" class="btn btn-outline-success me-2" type="button">Register</button>
+    </form>
+    </div>
+
+
+</body>
+
+</html>

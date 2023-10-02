@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+@import "~font-awesome/css/font-awesome.css";
+.title{
+  font-family:'Mooli', sans-serif;
+  font-weight: bold;
+  color: #E6E8E6;
+  }
+  
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .icon1{
+    font-size: 25px;
+  }
+  
+  #navv-btn{
+    background-color: #9FB8AD;
+    color: #3F403F;
+  }
+body {
+    background-color: #ffffff;
+    height: 100vh;
+  }
+  
+  .feedback-container {
+    background-color: #E8D7F1;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feedback-container h1 {
+    font-size: 2.5rem;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .btn-submit {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .btn-submit:hover {
+    background-color: #b085c6;
+  }
+  
+  .pera {
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+  

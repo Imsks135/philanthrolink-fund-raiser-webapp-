@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+@import "~font-awesome/css/font-awesome.css";
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+
+.title{
+  font-family:'Mooli', sans-serif;
+  font-weight: bold;
+  color: #E6E8E6;
+}
+
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+#navv-btn{
+    background-color: #9FB8AD;
+    color: #3F403F;
+  }
+
+img
+{
+    width: 45%;
+    float: left;
+    height: 697px;
+}
+.container
+{
+width: 50%;
+float: right;
+box-sizing: border-box;
+padding: 10px;
+margin-top: 190px;
+}
+
+.option
+{
+    align-content: center;
+}
+
+.clearfix::after {
+content: "";
+clear: both;
+display: table;
+}
+
+.button
+{
+    align-content: center;
+    width: 90px;
+    margin: 5px;
+    padding: 2px;
+}
